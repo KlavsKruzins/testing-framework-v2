@@ -1,0 +1,22 @@
+
+<%- include('header.ejs') %>
+<head>
+    <meta charset="UTF-8">
+    <title>Prepare testing template</title>
+</head>
+<body>
+<h1>Upload your Lex JSON file here</h1>
+<div class="container col-sm-12" id="choose-files" oncopy="return false" oncut="return false" onpaste="return false">
+    
+    <form action="/uploadfile" method="post" enctype="multipart/form-data">
+        <div class ="form-group"> 
+          <label for="cashbackfiles">Upload Exported Bot JSON File</label>
+          <input type="file" class="form-control-file"  name="cashbackfiles" id="cashbackfiles">
+        </div>
+        <input class="btn btn-primary" type="submit" style="border-radius: 4px;" name="cashbackfiles" value="Upload">
+    </form>
+    
+</div>
+</body>
+</html>
+<%- include('footer.ejs') %>

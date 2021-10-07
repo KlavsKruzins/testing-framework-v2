@@ -1,0 +1,24 @@
+<%- include('header.ejs') %>
+<div>
+  <h1>Create a new template</h1>
+      <form action="/create_template" method="post">
+        <div class="form-group">
+          <label for="enter-test-phrase-amount">Enter amount of test utterances per intent</label>
+          <input type="number" class="form-control" min='2' max='20'  placeholder="Enter The Amount of test phrases per intent" name="testphrases" id="enter-test-phrase-amount">
+        </div>
+        <button type="submit" class="btn btn-primary">Create Template</button>
+      </form>
+
+      <form action="/populate_from_archive" method="post">
+        <select class="form-select" aria-label="Select Test From Archive" name="chosenTest">
+          <option selected >Pick a past test to re-run</option>
+          <% testArchive.forEach(function(pastTest){ %>
+            <option value=<%= pastTest %> ><%= pastTest %></option>
+            <% }) %>
+        </select>
+        <input type="submit" class="btn btn-primary" value="Pick test">
+      </form>
+     
+      
+</div>
+<%- include('footer.ejs') %>

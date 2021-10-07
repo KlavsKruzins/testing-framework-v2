@@ -1,0 +1,36 @@
+<%- include('header.ejs') %>
+<script>
+    
+    function addInput(id)
+    {
+        
+        document.getElementById(id).innerHTML+=` <input class='form-control' type='text'  name='${id}'><br>`;
+        
+         
+    }
+</script>
+
+    <form action="/run_tests" method="post">
+        <h1>Edit Existing template</h1>
+         <div class= 'form-group'>
+            <% for (const key in pastTest.testUtterances) {%>
+            <div id = <%= key %>>
+            <input type="button" onclick="addInput('<%= key %>')"  class='btn' value = "+"/>
+            <label><%= key %></label>
+                <% pastTest.testUtterances[key].forEach( testphrase => { %>
+                    <input type="text" class="form-control" value = <%= testphrase %> name=<%= key %>><br>
+               <% }) %>
+             </div>
+            <% } %>  
+            <label for="save-test">Save this test as a template?</label>
+            <input type="checkbox" name='save-test' id="save-test" class="form-control">
+            <button type="submit" class="btn">Run Tests</button>
+         </div>
+            
+         
+            
+        
+      </form>
+
+<%- include('footer.ejs') %></form>
+

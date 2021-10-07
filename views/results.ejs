@@ -1,0 +1,66 @@
+<%- include('header.ejs') %>
+<h1>Testing Output</h1>
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Question</th>
+        <th scope="col">Expected Intent</th>
+        <th scope="col">Result Intent</th>
+        <th scope="col">Match</th>
+        <th scope="col">Wrong Match</th>
+        <th scope="col">No Answer</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% results.forEach((result,index) => { %>
+            <tr>
+                <th scope="row"><%= index %></th>
+                <td><%= result.Question %></td>
+                <td><%= result.ExpectedIntent %></td>
+                <td><%= result.ResultIntent %></td>
+                <td><%= result.Match %></td>
+                <td><%if(!result.Match && !result.NoAnswer){ %>
+                1
+                <% } %>
+                </td>
+                <td><%= result.NoAnswer %></td>
+              </tr>
+            <% }) %>
+    </tbody>
+  </table>
+  <h1>Summary</h1>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+
+        <th scope="col">Result</th>
+        <th scope="col">Answer Count</th>
+        <th scope="col">Precentage</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% resultsOverview.forEach(category => { %>
+            <tr>
+
+                <td><%= category.ResultIntent %></td>
+                <td><%= category.Match %></td>
+                <td><%= category.NoAnswer %></td>
+              </tr>
+            <% }) %>
+    </tbody>
+  </table>
+  
+ 
+<% writeResults(results) %>
+<div>
+  <p>
+    Your results have been exported as an .xlsx file.
+    All results are available in the root folder of this application in the results directory.
+  </p>
+</div>
+ 
+<div id='result-main-container'>
+    
+</div>
+<%- include('footer.ejs') %>

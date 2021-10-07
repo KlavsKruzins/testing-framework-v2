@@ -1,0 +1,31 @@
+<%- include('header.ejs') %>
+<script>
+    
+    function addInput(id)
+    {
+        
+        document.getElementById(id).innerHTML+=` <input class='form-control' type='text'  name='${id}'><br>`;
+        
+         
+    }
+</script>
+    <form action="/run_tests" method="post">
+        <h1>Create New Test Template</h1>
+        <div class="form-group" id='fg'>     
+                <% intentList.forEach(function(intent){ %>
+                    <div id = <%= intent %>>
+                    <input type="button" onclick="addInput('<%= intent %>')"  class='btn' value = "+"/>
+
+                        <label for=<%= intent %>><%= intent %></label>
+                    <% for(var i=0; i<testphrases; i++){%>
+                        <input class='form-control' type="text" id=<%= intent + "-" + String(i) %> name=<%= intent %>><br>
+                    <% } %>
+                    </div>
+                    <% }) %>
+          <label for="save-test">Save this test as a template?</label>
+          <input type="checkbox" name='save-test' id="save-test" class="form-control">
+          <button type="submit" class="btn">Run Tests</button>
+        </div>
+      </form>
+ 
+<%- include('footer.ejs') %>
